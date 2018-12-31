@@ -11,28 +11,12 @@ wget https://github.com/Yelp/dumb-init/releases/download/v1.2.1/dumb-init_1.2.1_
 dpkg -i dumb-init_*.deb && rm -f dumb-init_*.deb && \
 apt-get clean && apt-get autoremove -y && rm -rf /var/lib/apt/lists/*
 
-RUN yarn global add puppeteer@1.11.0 && yarn cache clean
-
-ENV NODE_PATH="/usr/local/share/.config/yarn/global/node_modules:${NODE_PATH}"
-
-
-RUN groupadd -r pptruser && useradd -r -g pptruser -G audio,video pptruser
+RUN yarn add global puppeteer@1.11.0 && yarn cache clean
 
 # Set language to UTF8
 ENV LANG="C.UTF-8"
 
 WORKDIR /app
-
-# Add user so we don't need --no-sandbox.
-RUN mkdir /screenshots \
-	&& mkdir -p /home/pptruser/Downloads \
-    && chown -R pptruser:pptruser /home/pptruser \
-    && chown -R pptruser:pptruser /usr/local/share/.config/yarn/global/node_modules \
-    && chown -R pptruser:pptruser /screenshots \
-    && chown -R pptruser:pptruser /app
-
-# Run everything after as non-privileged user.
-USER pptruser
 
 # --cap-add=SYS_ADMIN
 # https://docs.docker.com/engine/reference/run/#additional-groups
