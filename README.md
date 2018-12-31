@@ -12,9 +12,11 @@
 ## puppeteer 
 
 #### Release
-[Docs链接点击这里](./puppeteer/README.md)
+[Docs链接点击这里](./puppeteer)
 ```bash
 sudo docker pull registry.cn-shenzhen.aliyuncs.com/zhaojunlike/puppeteer:[镜像版本号]
 ```
+  
+  
   
 
