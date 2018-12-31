@@ -1,5 +1,7 @@
 FROM node:10-slim
 
+LABEL MAINTAINER=godtoy@oeynet.com
+
 RUN apt-get update && \
 apt-get install -yq gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 \
 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 \
@@ -11,7 +13,7 @@ wget https://github.com/Yelp/dumb-init/releases/download/v1.2.1/dumb-init_1.2.1_
 dpkg -i dumb-init_*.deb && rm -f dumb-init_*.deb && \
 apt-get clean && apt-get autoremove -y && rm -rf /var/lib/apt/lists/*
 
-RUN yarn add global puppeteer@1.11.0 && yarn cache clean
+RUN yarn add global puppeteer@1.11.0
 
 # Set language to UTF8
 ENV LANG="C.UTF-8"
